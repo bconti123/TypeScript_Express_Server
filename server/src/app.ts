@@ -6,5 +6,5 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello, TypeScript Express!');
 });
 
-export { app };
+export default app;
 
