@@ -6,7 +6,7 @@ describe("config come from env", () => {
         process.env.PORT = "5001";
 
         // Re-import
-        const {default:config} = await import("./config");
+        const { config } = await import("./config");
         expect(config.SECRET_KEY).toBe("abc");
         expect(config.PORT).toEqual(5001);
 

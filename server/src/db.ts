@@ -1,19 +1,22 @@
 "use strict";
 
 import { Client } from "pg";
+import { getDatabaseUri } from "./config";
 
-type db = {
+export type Database = {
     client: Client;
     connect: () => Promise<void>;
 };
 
-const db: db = {
+export const db: Database = {
     client: new Client({
-        connectionString: process.env.DATABASE_URL,
+        connectionString: getDatabaseUri(),
+        host: "/var/run/postgresql",
+        ssl: {
+            rejectUnauthorized: false,
+        }
     }),
     connect: async () => {
         await db.client.connect();
     },
 };
-
-export default db;
